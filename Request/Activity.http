@@ -1,0 +1,2 @@
+### Get all acitivity
+GET localhost:5000/api/activities
