@@ -1,2 +1,35 @@
 ### Get all acitivity
 GET localhost:5000/api/activities
+
+### Get activity by id
+GET localhost:5000/api/activities/7aee3ae2-310b-44e2-b3ad-23bfa8d4a0b0
+
+### Create activity
+POST localhost:5000/api/activities
+Content-Type: application/json
+
+{
+  "id": "{{$guid}}",
+  "title": "Future Activity 6",
+  "description": "Activity 6 months in future",
+  "category": "music",
+  "date": "{{$localDatetime iso8601 10}}",
+  "city": "London",
+  "venue": "Roundhouse Camden"
+}
+
+### Update activity
+PUT localhost:5000/api/activities/f94d7a95-6ddd-4ae3-b9e8-2ff41375f9e8
+Content-Type: application/json
+
+{
+  "title": "Learning Like a Pro",
+  "description": "Clean architecture, CQRS, DDD, Event Sourcing, and more!",
+  "category": "learning",
+  "date": "{{$localDatetime iso8601 100000}}",
+  "city": "Houston",
+  "venue": "Thao's estate"
+}
+
+### Delete activity
+DELETE localhost:5000/api/activities/9bd0a1f8-f0ab-4323-9c57-7b6174f8a683
