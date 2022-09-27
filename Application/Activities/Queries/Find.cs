@@ -1,3 +1,4 @@
+using Application.Core;
 using Domain;
 using MediatR;
 using Persistence;
@@ -6,12 +7,12 @@ namespace Application.Activities.Queries;
 
 public static class Find
 {
-  public class Query : IRequest<Activity>
+  public class Query : IRequest<Result<Activity>>
   {
     public Guid Id { get; set; }
   }
 
-  public class Handler : IRequestHandler<Query, Activity>
+  public class Handler : IRequestHandler<Query, Result<Activity>>
   {
     private readonly DataContext _context;
 
@@ -19,9 +20,13 @@ public static class Find
     {
       _context = context;
     }
-    public async Task<Activity> Handle(Query request, CancellationToken cancellationToken)
+    public async Task<Result<Activity>> Handle(Query request, CancellationToken cancellationToken)
     {
-      return await _context.Activities.FindAsync(request.Id);
+      // find the activity by id
+      var activity = await _context.Activities.FindAsync(request.Id);
+
+      // success if no errors even if activity is null
+      return Result<Activity>.Success(activity);
     }
   }
 }

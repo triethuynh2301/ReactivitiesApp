@@ -1,6 +1,7 @@
-using System.Net;
+using Application.Core;
 using AutoMapper;
 using Domain;
+using FluentValidation;
 using MediatR;
 using Persistence;
 
@@ -8,12 +9,23 @@ namespace Application.Activities.Commands;
 
 public static class Edit
 {
-  public class Command : IRequest
+  // request class
+  public class Command : IRequest<Result<Unit>>
   {
     public Activity Activity { get; set; } = null!;
   }
 
-  public class Handler : IRequestHandler<Command>
+  // request validator
+  public class CommandValidator : AbstractValidator<Command>
+  {
+    public CommandValidator()
+    {
+      RuleFor(x => x.Activity).SetValidator(new CreateEditValidator());
+    }
+  }
+
+  // request handler
+  public class Handler : IRequestHandler<Command, Result<Unit>?>
   {
     private readonly DataContext _context;
     private readonly IMapper _mapper;
@@ -24,21 +36,23 @@ public static class Edit
       _mapper = mapper;
     }
 
-    public async Task<Unit> Handle(Command request, CancellationToken cancellationToken)
+    public async Task<Result<Unit>?> Handle(Command request, CancellationToken cancellationToken)
     {
       var activity = await _context.Activities.FindAsync(request.Activity.Id);
 
-      if (activity == null)
-        throw new Exception("Could not find activity");
+      // activity not found -> return null
+      if (activity == null) return null;
 
       // map the request to entity
       _mapper.Map(request.Activity, activity);
 
+      // check if any operation is committed to db
       var success = await _context.SaveChangesAsync(cancellationToken) > 0;
 
-      if (success) return Unit.Value;
+      // if no operation is committed -> failure
+      if (!success) return Result<Unit>.Failure("Failed to edit activity");
 
-      throw new Exception("Problem saving changes");
+      return Result<Unit>.Success(Unit.Value);
     }
   }
 }

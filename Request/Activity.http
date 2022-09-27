@@ -9,27 +9,21 @@ POST localhost:5000/api/activities
 Content-Type: application/json
 
 {
-  "id": "{{$guid}}",
-  "title": "Future Activity 6",
-  "description": "Activity 6 months in future",
-  "category": "music",
-  "date": "{{$localDatetime iso8601 10}}",
-  "city": "London",
-  "venue": "Roundhouse Camden"
+  "description": ".NET Core development best practices, C# and clean architecture!",
+  "category": "Learning",
+  "date": "2022-09-18T07:22:42.9822309",
+  "city": "Houston",
+  "venue": "Thao's estates"
 }
 
 ### Update activity
-PUT localhost:5000/api/activities/f94d7a95-6ddd-4ae3-b9e8-2ff41375f9e8
+PUT localhost:5000/api/activities/4db4a9f3-5047-47f1-90a5-2b30cfb6c6e0
 Content-Type: application/json
 
 {
-  "title": "Learning Like a Pro",
-  "description": "Clean architecture, CQRS, DDD, Event Sourcing, and more!",
-  "category": "learning",
-  "date": "{{$localDatetime iso8601 100000}}",
-  "city": "Houston",
-  "venue": "Thao's estate"
+  "title": "Working at the office",
+  "description": "Real Time Power!"
 }
 
 ### Delete activity
-DELETE localhost:5000/api/activities/9bd0a1f8-f0ab-4323-9c57-7b6174f8a683
+DELETE localhost:5000/api/activities/b2a29d53-b4e3-4598-b3e1-2f410cb54477

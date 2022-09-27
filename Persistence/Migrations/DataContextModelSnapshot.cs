@@ -49,108 +49,257 @@ namespace Persistence.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Activities");
+                });
 
-                    b.HasData(
-                        new
-                        {
-                            Id = new Guid("d4917ce1-0cc9-49ec-b7f9-9bace564d130"),
-                            Category = "drinks",
-                            City = "London",
-                            Date = new DateTime(2022, 7, 16, 5, 22, 42, 982, DateTimeKind.Local).AddTicks(2108),
-                            Description = "Activity 2 months ago",
-                            Title = "Past Activity 1",
-                            Venue = "Pub"
-                        },
-                        new
-                        {
-                            Id = new Guid("99df3931-32e9-48bd-9fdd-07afce405b84"),
-                            Category = "culture",
-                            City = "Paris",
-                            Date = new DateTime(2022, 8, 16, 5, 22, 42, 982, DateTimeKind.Local).AddTicks(2170),
-                            Description = "Activity 1 month ago",
-                            Title = "Past Activity 2",
-                            Venue = "Louvre"
-                        },
-                        new
-                        {
-                            Id = new Guid("9e902e71-8f19-4993-ba8a-7288559bbf48"),
-                            Category = "culture",
-                            City = "London",
-                            Date = new DateTime(2022, 10, 16, 5, 22, 42, 982, DateTimeKind.Local).AddTicks(2193),
-                            Description = "Activity 1 month in future",
-                            Title = "Future Activity 1",
-                            Venue = "Natural History Museum"
-                        },
-                        new
-                        {
-                            Id = new Guid("c79bb016-6d7c-4983-87f7-6c5e5062d9d2"),
-                            Category = "music",
-                            City = "London",
-                            Date = new DateTime(2022, 11, 16, 5, 22, 42, 982, DateTimeKind.Local).AddTicks(2217),
-                            Description = "Activity 2 months in future",
-                            Title = "Future Activity 2",
-                            Venue = "O2 Arena"
-                        },
-                        new
-                        {
-                            Id = new Guid("f02d651a-304c-402e-9cd1-ad2c70d7481b"),
-                            Category = "drinks",
-                            City = "London",
-                            Date = new DateTime(2022, 12, 16, 5, 22, 42, 982, DateTimeKind.Local).AddTicks(2242),
-                            Description = "Activity 3 months in future",
-                            Title = "Future Activity 3",
-                            Venue = "Another pub"
-                        },
-                        new
-                        {
-                            Id = new Guid("8ef4aa56-87b1-4dcd-a683-bd933c5082a1"),
-                            Category = "drinks",
-                            City = "London",
-                            Date = new DateTime(2023, 1, 16, 5, 22, 42, 982, DateTimeKind.Local).AddTicks(2264),
-                            Description = "Activity 4 months in future",
-                            Title = "Future Activity 4",
-                            Venue = "Yet another pub"
-                        },
-                        new
-                        {
-                            Id = new Guid("b2a29d53-b4e3-4598-b3e1-2f410cb54477"),
-                            Category = "drinks",
-                            City = "London",
-                            Date = new DateTime(2023, 2, 16, 5, 22, 42, 982, DateTimeKind.Local).AddTicks(2286),
-                            Description = "Activity 5 months in future",
-                            Title = "Future Activity 5",
-                            Venue = "Just another pub"
-                        },
-                        new
-                        {
-                            Id = new Guid("8bd0a1f8-f0ab-4323-9c57-7b6174fb0683"),
-                            Category = "music",
-                            City = "London",
-                            Date = new DateTime(2023, 3, 16, 5, 22, 42, 982, DateTimeKind.Local).AddTicks(2309),
-                            Description = "Activity 6 months in future",
-                            Title = "Future Activity 6",
-                            Venue = "Roundhouse Camden"
-                        },
-                        new
-                        {
-                            Id = new Guid("7aee3ae2-310b-44e2-b3ad-23bfa8d4a0b0"),
-                            Category = "travel",
-                            City = "London",
-                            Date = new DateTime(2023, 4, 16, 5, 22, 42, 982, DateTimeKind.Local).AddTicks(2331),
-                            Description = "Activity 2 months ago",
-                            Title = "Future Activity 7",
-                            Venue = "Somewhere on the Thames"
-                        },
-                        new
-                        {
-                            Id = new Guid("99d8fe9c-94b8-4d80-bbfd-4bccc496d54f"),
-                            Category = "film",
-                            City = "London",
-                            Date = new DateTime(2023, 5, 16, 5, 22, 42, 982, DateTimeKind.Local).AddTicks(2353),
-                            Description = "Activity 8 months in future",
-                            Title = "Future Activity 8",
-                            Venue = "Cinema"
-                        });
+            modelBuilder.Entity("Domain.User", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("AccessFailedCount")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Bio")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("ConcurrencyStamp")
+                        .IsConcurrencyToken()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("DisplayName")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Email")
+                        .HasMaxLength(256)
+                        .HasColumnType("TEXT");
+
+                    b.Property<bool>("EmailConfirmed")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<bool>("LockoutEnabled")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<DateTimeOffset?>("LockoutEnd")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("NormalizedEmail")
+                        .HasMaxLength(256)
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("NormalizedUserName")
+                        .HasMaxLength(256)
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("PasswordHash")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("PhoneNumber")
+                        .HasColumnType("TEXT");
+
+                    b.Property<bool>("PhoneNumberConfirmed")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("SecurityStamp")
+                        .HasColumnType("TEXT");
+
+                    b.Property<bool>("TwoFactorEnabled")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("UserName")
+                        .HasMaxLength(256)
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("NormalizedEmail")
+                        .HasDatabaseName("EmailIndex");
+
+                    b.HasIndex("NormalizedUserName")
+                        .IsUnique()
+                        .HasDatabaseName("UserNameIndex");
+
+                    b.ToTable("AspNetUsers", (string)null);
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("ConcurrencyStamp")
+                        .IsConcurrencyToken()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Name")
+                        .HasMaxLength(256)
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("NormalizedName")
+                        .HasMaxLength(256)
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("NormalizedName")
+                        .IsUnique()
+                        .HasDatabaseName("RoleNameIndex");
+
+                    b.ToTable("AspNetRoles", (string)null);
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("ClaimType")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("ClaimValue")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("RoleId")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("RoleId");
+
+                    b.ToTable("AspNetRoleClaims", (string)null);
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("ClaimType")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("ClaimValue")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("AspNetUserClaims", (string)null);
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
+                {
+                    b.Property<string>("LoginProvider")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("ProviderKey")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("ProviderDisplayName")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("LoginProvider", "ProviderKey");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("AspNetUserLogins", (string)null);
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<string>", b =>
+                {
+                    b.Property<string>("UserId")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("RoleId")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("UserId", "RoleId");
+
+                    b.HasIndex("RoleId");
+
+                    b.ToTable("AspNetUserRoles", (string)null);
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
+                {
+                    b.Property<string>("UserId")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("LoginProvider")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Value")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("UserId", "LoginProvider", "Name");
+
+                    b.ToTable("AspNetUserTokens", (string)null);
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
+                {
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
+                        .WithMany()
+                        .HasForeignKey("RoleId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
+                {
+                    b.HasOne("Domain.User", null)
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
+                {
+                    b.HasOne("Domain.User", null)
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<string>", b =>
+                {
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
+                        .WithMany()
+                        .HasForeignKey("RoleId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Domain.User", null)
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
+                {
+                    b.HasOne("Domain.User", null)
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }
