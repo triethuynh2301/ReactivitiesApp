@@ -1,23 +1,15 @@
-using Api;
-using API.Middleware;
-using Application;
-using Infrastructure;
+using API;
+using API.Infrastructure.Persistence;
 using Microsoft.EntityFrameworkCore;
-using Persistence;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // add dependency injection from other projects
-builder.Services.AddPresentation()
-                .AddApplication()
-                .AddPersistence(builder.Configuration)
-                .AddInfrastructure(builder.Configuration);
+builder.Services.AddPresentation(builder.Configuration);
 
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
-app.UseMiddleware<ExceptionMiddleware>();
-
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
@@ -25,8 +17,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "API v1"));
 }
 
-// app.UseHttpsRedirection();
-
+app.UseExceptionHandler("/error");
+app.UseHttpsRedirection();
 app.UseRouting();
 
 app.UseCors("CorsPolicy");
@@ -53,3 +45,4 @@ catch (Exception ex)
 }
 
 app.Run();
+public partial class Program { }

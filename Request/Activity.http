@@ -9,21 +9,25 @@ POST localhost:5000/api/activities
 Content-Type: application/json
 
 {
-  "description": ".NET Core development best practices, C# and clean architecture!",
+  "title": "Morning learning session",
+  "description": "Wrap up the CRUD part of Reactivities project",
   "category": "Learning",
-  "date": "2022-09-18T07:22:42.9822309",
+  "date": "2022-10-10T11:22:42.9822309",
   "city": "Houston",
   "venue": "Thao's estates"
 }
 
 ### Update activity
-PUT localhost:5000/api/activities/4db4a9f3-5047-47f1-90a5-2b30cfb6c6e0
+PUT localhost:5000/api/activities/0a3080bb-b513-434b-b58e-076f6e5990f4
 Content-Type: application/json
 
 {
-  "title": "Working at the office",
-  "description": "Real Time Power!"
+  "description": "Wrap up the CRUD part of Reactivities project",
+  "category": "Learning",
+  "date": "2022-10-10T11:22:42.9822309",
+  "city": "Houston",
+  "venue": "Thao's estates"
 }
 
 ### Delete activity
-DELETE localhost:5000/api/activities/b2a29d53-b4e3-4598-b3e1-2f410cb54477
+DELETE localhost:5000/api/activities/4db4a9f3-5047-47f1-90a5-2b30cfb6c6e0
